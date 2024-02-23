@@ -9,12 +9,12 @@ export const Checkvalidate = (email , password ,name) => {
         /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/.test(password);
  
 
-        const isNameValid = /^\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/.test(name)
+        // const isNameValid = /^\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/.test(name)
 
 
     if(!isPasswordValid) return "Please enter a valid password" 
     if(!isEmailValid) return "Enter valid email"
-    if(!isNameValid) return "Please enter First and Last Name" 
+    // if(!isNameValid) return "Please enter First and Last Name" 
   
     return null;
 

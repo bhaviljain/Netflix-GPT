@@ -1,9 +1,8 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { Checkvalidate } from '../utils/validate'
-
-
-
+import { createUserWithEmailAndPassword , signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from "../utils/Firebase"
 const Login = () => {
   const [signIn, setSignIn] = useState(true)
   const [errorMessage , setErrorMessage] = useState(null)
@@ -23,8 +22,47 @@ const name = useRef(null)
 
   const handlebuttonform = ()=>{
    
-    const message = Checkvalidate(email.current.value, password.current.value, name.current.value);
+    const message = Checkvalidate(email.current.value, password.current.value);
     setErrorMessage(message);
+  if(message) return;
+  
+  if(!signIn){
+    createUserWithEmailAndPassword(auth,email.current.value, password.current.value)
+    .then((userCredential) => {
+      // Signed up 
+      const user = userCredential.user;
+      console.log(user);
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      setErrorMessage(errorCode +" - " + errorMessage);
+
+      // ..
+    });
+  }
+  else{
+    signInWithEmailAndPassword(auth,email.current.value, password.current.value)
+    .then((userCredential) => {
+      // Signed in 
+      const user = userCredential.user;
+      console.log(user);
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+
+      if(errorMessage === "Firebase: Error (auth/invalid-credential).")
+      setErrorMessage("hahh");
+
+     
+     
+    });
+   
+  }
+ 
   }
   return (
     <div>
@@ -33,6 +71,7 @@ const name = useRef(null)
 <img className='h-[130vh] w-[auto] absolute object-cover flex flex-wrap' src="https://assets.nflxext.com/ffe/siteui/vlv3/c0b69670-89a3-48ca-877f-45ba7a60c16f/2642e08e-4202-490e-8e93-aff04881ee8a/IN-en-20240212-popsignuptwoweeks-perspective_alpha_website_small.jpg" srcSet="https://assets.nflxext.com/ffe/siteui/vlv3/c0b69670-89a3-48ca-877f-45ba7a60c16f/2642e08e-4202-490e-8e93-aff04881ee8a/IN-en-20240212-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/c0b69670-89a3-48ca-877f-45ba7a60c16f/2642e08e-4202-490e-8e93-aff04881ee8a/IN-en-20240212-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/c0b69670-89a3-48ca-877f-45ba7a60c16f/2642e08e-4202-490e-8e93-aff04881ee8a/IN-en-20240212-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt='bg'/>
 
     </div>
+ 
     <form onSubmit={(e)=>e.preventDefault()} className='w-2/5 absolute right-0 left-0  bg-black my-36 mx-auto  p-7  
     h-auto bg-opacity-80 text-white'>
       <h1 className='text-white font-bold p-5'>{signIn ? "Sign IN" : "Sign Up"}</h1>
@@ -58,6 +97,8 @@ const name = useRef(null)
    </p>
     </form>
     </div>
+  
+    
   )
 }
 
