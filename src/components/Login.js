@@ -1,12 +1,16 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { Checkvalidate } from '../utils/validate'
-import { createUserWithEmailAndPassword , signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword , signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth} from "../utils/Firebase"
+import { useNavigate } from 'react-router-dom';
+
+
 const Login = () => {
   const [signIn, setSignIn] = useState(true)
   const [errorMessage , setErrorMessage] = useState(null)
 
+  const navigate = useNavigate()
 
 
   const email = useRef(null)
@@ -31,6 +35,18 @@ const name = useRef(null)
     .then((userCredential) => {
       // Signed up 
       const user = userCredential.user;
+updateProfile(user, {
+  displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/141806385?s=400&u=395cd9258be1ce40ac0dc49fb85cbf5c57a2c691&v=4"
+}).then(() => {
+  // Profile updated!
+  // ...
+  navigate("/browse")
+
+}).catch((error) => {
+  // An error occurred
+  setErrorMessage(error.message);
+  // ...
+});
       console.log(user);
       // ...
     })
@@ -47,6 +63,8 @@ const name = useRef(null)
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
+      navigate("/browse")
+
       console.log(user);
       // ...
     })
@@ -55,7 +73,7 @@ const name = useRef(null)
       const errorMessage = error.message;
 
       if(errorMessage === "Firebase: Error (auth/invalid-credential).")
-      setErrorMessage("hahh");
+      setErrorMessage("User does not exists");
 
      
      
