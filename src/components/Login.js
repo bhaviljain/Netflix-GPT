@@ -4,6 +4,8 @@ import { Checkvalidate } from '../utils/validate'
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth} from "../utils/Firebase"
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
 
 
 const Login = () => {
@@ -11,6 +13,7 @@ const Login = () => {
   const [errorMessage , setErrorMessage] = useState(null)
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
 
   const email = useRef(null)
@@ -36,9 +39,13 @@ const name = useRef(null)
       // Signed up 
       const user = userCredential.user;
 updateProfile(user, {
-  displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/141806385?s=400&u=395cd9258be1ce40ac0dc49fb85cbf5c57a2c691&v=4"
+  displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/141806385?v=4",
 }).then(() => {
   // Profile updated!
+  const {uid , email , displayName , photoURL} = auth.currentUser
+  dispatch(addUser({uid: uid, email: email, displayName:displayName, photoURL:photoURL}));
+  
+  
   // ...
   navigate("/browse")
 

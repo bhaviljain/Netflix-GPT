@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userReducer from "./userSlice";
+import userLoginLogout from "./userSlice";
 
 const appStore = configureStore({
     reducer:{
-        user : userReducer
-    }
+        userLoginLogout : userLoginLogout,
+    },
 })
 export default appStore
