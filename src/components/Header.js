@@ -1,20 +1,39 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { auth } from '../utils/Firebase'
-import {signOut } from "firebase/auth";
+import {onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser, removeUser } from '../utils/userSlice';
 
 const Header = () => {
+ const dispatch = useDispatch()
+  useEffect (()=>{
+    const unsubscribe =  onAuthStateChanged(auth, (user) => {
+      if (user) {
+        
+        const {uid , email , displayName , photoURL} = user;
+        dispatch(addUser({uid: uid, email: email, displayName:displayName, photoURL:photoURL}));
+        // ...
+        navigate('/browse')
+      } else {
+      dispatch(removeUser())
+      navigate('/')
+      }
+    })
+    return () => unsubscribe()
+  },[])
+
+
   const user = useSelector(store=>store.userLoginLogout)
  const navigate = useNavigate()
 
   const handleSignout = () =>{
 signOut(auth).then(() => {
-  navigate('/')
-  // Sign-out successful.
+  
+//   // Sign-out successful.
 }).catch((error) => {
-  // An error happened.
-});
+//   // An error happened.
+ });  
   }
 
   return (

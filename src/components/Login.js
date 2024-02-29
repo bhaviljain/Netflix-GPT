@@ -3,7 +3,6 @@ import Header from './Header'
 import { Checkvalidate } from '../utils/validate'
 import { createUserWithEmailAndPassword , signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth} from "../utils/Firebase"
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 
@@ -12,7 +11,6 @@ const Login = () => {
   const [signIn, setSignIn] = useState(true)
   const [errorMessage , setErrorMessage] = useState(null)
 
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
 
@@ -47,14 +45,13 @@ updateProfile(user, {
   
   
   // ...
-  navigate("/browse")
 
 }).catch((error) => {
   // An error occurred
   setErrorMessage(error.message);
   // ...
 });
-      console.log(user);
+      // console.log(user);
       // ...
     })
     .catch((error) => {
@@ -70,9 +67,8 @@ updateProfile(user, {
     .then((userCredential) => {
       // Signed in 
       const user = userCredential.user;
-      navigate("/browse")
 
-      console.log(user);
+      // console.log(user);
       // ...
     })
     .catch((error) => {
