@@ -42,6 +42,7 @@ signOut(auth).then(() => {
       <img className='h-[260px]' src='images/logo.png' alt='logo'/>
      { user && <div className='flex'>
       <img className='h-[36px] mt-[120px]' src={user?.photoURL} alt='usericon'/>
+      <h3 className='text-red text-xl mt-[120px]'>{user?.displayName}</h3>
       <button onClick={handleSignout} className='p-2 m-2 bg-red-800 h-[15%] rounded-full mt-[120px] hover:bg-red-200 text-xs'>Sign <div> Out</div></button>
 
 

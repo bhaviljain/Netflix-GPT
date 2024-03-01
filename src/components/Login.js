@@ -5,6 +5,8 @@ import { createUserWithEmailAndPassword , signInWithEmailAndPassword, updateProf
 import {auth} from "../utils/Firebase"
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import { backGround } from '../utils/Constants';
+import { Myimg } from '../utils/Constants';
 
 
 const Login = () => {
@@ -37,7 +39,7 @@ const name = useRef(null)
       // Signed up 
       const user = userCredential.user;
 updateProfile(user, {
-  displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/141806385?v=4",
+  displayName: name.current.value, photoURL:Myimg,
 }).then(() => {
   // Profile updated!
   const {uid , email , displayName , photoURL} = auth.currentUser
@@ -89,7 +91,7 @@ updateProfile(user, {
     <div>
 <Header />
 <div>
-<img className='h-[130vh] w-[auto] absolute object-cover flex flex-wrap' src="https://assets.nflxext.com/ffe/siteui/vlv3/c0b69670-89a3-48ca-877f-45ba7a60c16f/2642e08e-4202-490e-8e93-aff04881ee8a/IN-en-20240212-popsignuptwoweeks-perspective_alpha_website_small.jpg" srcSet="https://assets.nflxext.com/ffe/siteui/vlv3/c0b69670-89a3-48ca-877f-45ba7a60c16f/2642e08e-4202-490e-8e93-aff04881ee8a/IN-en-20240212-popsignuptwoweeks-perspective_alpha_website_small.jpg 1000w, https://assets.nflxext.com/ffe/siteui/vlv3/c0b69670-89a3-48ca-877f-45ba7a60c16f/2642e08e-4202-490e-8e93-aff04881ee8a/IN-en-20240212-popsignuptwoweeks-perspective_alpha_website_medium.jpg 1500w, https://assets.nflxext.com/ffe/siteui/vlv3/c0b69670-89a3-48ca-877f-45ba7a60c16f/2642e08e-4202-490e-8e93-aff04881ee8a/IN-en-20240212-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt='bg'/>
+<img className='h-[130vh] w-[auto] absolute object-cover flex flex-wrap' src={backGround} alt='bg'/>
 
     </div>
  
