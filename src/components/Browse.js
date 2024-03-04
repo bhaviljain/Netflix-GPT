@@ -1,6 +1,10 @@
 import React from 'react'
 import Header from './Header'
 import usePlayNowMovie from '../Hooks/usePlayNowMovie'
+import MainContainer from './MainContainer'
+import SecondContainer from './SecondContainer'
+import VideoTitle from './VideoTitle'
+import { VideoBackground } from './VideoBackground'
 
 
 const Browse = () => {
@@ -12,6 +16,8 @@ const Browse = () => {
 
 
 <Header />
+<MainContainer />
+<SecondContainer />
 
    </>
   )
