@@ -37,8 +37,9 @@ signOut(auth).then(() => {
   }
 
   return (
-    <div className='flex justify-between absolute top-[-100px] left-[-29px] z-10 w-full
-    bg-gradient-to-b from-black'>
+    <div className='flex justify-between absolute top-[-100px] left-[-29px] z-10 w-screen
+    bg-gradient-to-b from-black
+    '>
       <img className='h-[260px]' src='images/logo.png' alt='logo'/>
      { user && <div className='flex'>
       <img className='h-[36px] mt-[120px]' src={user?.photoURL} alt='usericon'/>
