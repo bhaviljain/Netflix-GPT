@@ -12,13 +12,11 @@ const Browse = () => {
   usePlayNowMovie()
   return (
    <>
-  
 
 
 <Header />
 <MainContainer />
 <SecondContainer />
-
    </>
   )
 }
