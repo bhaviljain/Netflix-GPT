@@ -4,9 +4,9 @@ import MovieCard from './MovieCard'
 export const Movielist = ({title , movies}) => {
  console.log(movies);
   return (
-    <div>
+    <div className='bg-black'>
 
-        <h3 className='font-bold p-2.5 text-2xl'>{title}</h3>
+        <h3 className='font-bold p-2.5 text-2xl text-white'>{title}</h3>
         <div className='flex  overflow-x-scroll
         
         '>
