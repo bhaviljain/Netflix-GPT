@@ -8,7 +8,8 @@ const SecondContainer = () => {
     <div className='bg-black p-10 '>
     <div className='-mt-[90px] relative z-20 '>
       <Movielist  title={'Now Playing'} movies = {movies.addPlayingNowMovie} />
-      <Movielist  title={'Now Playing'} movies = {movies.popularMovie} />
+      <Movielist  title={'Popular'} movies = {movies.popularMovie} />
+      <Movielist  title={'Top Rated'} movies = {movies.TopRated} />
   
       </div>
     </div>

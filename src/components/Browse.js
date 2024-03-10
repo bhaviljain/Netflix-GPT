@@ -4,12 +4,14 @@ import usePlayNowMovie from '../Hooks/usePlayNowMovie'
 import MainContainer from './MainContainer'
 import SecondContainer from './SecondContainer'
 import usePopularMovies from '../Hooks/usePopularMovie'
+import useTopRated from '../Hooks/useTopRated'
 
 
 const Browse = () => {
  
   usePlayNowMovie()
   usePopularMovies()
+  useTopRated()
   return (
    <>
 
