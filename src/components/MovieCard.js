@@ -4,8 +4,8 @@ import { IMG_CDN } from '../utils/Constants';
 const MovieCard = ({poster}) => {
   return (
     <div>
-    <div className='w-[100px] pr-5'>
-    <img src={IMG_CDN + poster}></img>
+    <div className='w-[15vw] pr-5'>
+    <img alt='cards' src={IMG_CDN + poster}></img>
 
     </div>
     </div>
