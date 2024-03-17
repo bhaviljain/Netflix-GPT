@@ -40,6 +40,8 @@ signOut(auth).then(() => {
     <div className='flex justify-between absolute top-[-100px] left-[-29px] z-10 w-screen bg-gradient-to-b from-black
 '>
       <img className='h-[260px]' src='images/logo.png' alt='logo'/>
+      <button className='text-white'>GPT SEARCH 🔍</button>
+
      { user && <div className='flex'>
       <img className='h-[36px] mt-[120px]' src={user?.photoURL} alt='usericon'/>
       <h3 className='text-red text-xl mt-[120px]'>{user?.displayName}</h3>

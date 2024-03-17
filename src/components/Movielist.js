@@ -10,8 +10,11 @@ export const Movielist = ({title , movies}) => {
         
         '>
         {movies &&
-        movies.map(movie=> <MovieCard poster = {movie.poster_path}/>
+        movies.map((movie)=> <MovieCard poster = {movie.poster_path} id={movie.id} key={movie.id}/>
+        
 )}
+
+
         </div>
        
     

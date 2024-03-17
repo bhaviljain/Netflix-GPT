@@ -17,7 +17,7 @@ const data=await fetch('https://api.themoviedb.org/3/movie/'+
       // console.log(OfficalTrailer);
       // console.log(json);
       // setTrailerID(OfficalTrailer.key)
-       const trailer = json?.results[1]
+       const trailer = json?.results[0]
        dispatch(addTrailerVideo(trailer))
     }
   

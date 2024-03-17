@@ -7,6 +7,8 @@ const MovSlice = createSlice({
         trailer :null,
         popularMovie:null,
         TopRated: null,
+        displayMovieTrailer: null
+
     },
     reducers:{
         addPlayingNowMovie : (state, action) =>{
@@ -20,7 +22,8 @@ const MovSlice = createSlice({
         },
         addTopRatedMovies: (state,action)=>{
             state.TopRated = action.payload
-        }
+        },
+       
     }
 })
 export const {addPlayingNowMovie , addTrailerVideo, addPopularMovie , addTopRatedMovies} = MovSlice.actions
