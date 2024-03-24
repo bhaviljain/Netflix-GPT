@@ -5,8 +5,8 @@ export const Movielist = ({title , movies}) => {
   return (
     <div className=''>
 
-        <h3 className='font-bold p-2.5 text-2xl text-white'>{title}</h3>
-        <div className='flex  overflow-x-scroll
+        <h3 className='font-bold  p-2.5 text-2xl text-white'>{title}</h3>
+        <div className='flex  overflow-x-scroll  overflow-y-hidden
         
         '>
         {movies &&

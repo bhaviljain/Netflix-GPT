@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { auth } from '../utils/Firebase'
 import {onAuthStateChanged, signOut } from "firebase/auth";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
+import { toggleGptSearch } from '../utils/gptSlice';
 
 const Header = () => {
  const dispatch = useDispatch()
@@ -36,11 +37,19 @@ signOut(auth).then(() => {
  });  
   }
 
+ const handleGptSearchClick = () =>{
+  dispatch(toggleGptSearch())
+ }
+
+
   return (
     <div className='flex justify-between absolute top-[-100px] left-[-29px] z-10 w-screen bg-gradient-to-b from-black
 '>
+
       <img className='h-[260px]' src='images/logo.png' alt='logo'/>
-      <button className='text-white'>GPT SEARCH 🔍</button>
+     {/* <button className='text-red-700 font-bold hover:underline'><Link to={'/browse'}>Home</Link></button> */}
+
+      <button onClick={handleGptSearchClick} className='text-white ml-42'>GPT SEARCH 🔍</button>
 
      { user && <div className='flex'>
       <img className='h-[36px] mt-[120px]' src={user?.photoURL} alt='usericon'/>
