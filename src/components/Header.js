@@ -5,8 +5,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { toggleGptSearch } from '../utils/gptSlice';
+import { Supported_Lang } from '../utils/Constants';
+import lang from '../utils/Language';
+import { changeLanguage } from '../utils/ConfigSlice';
 
 const Header = () => {
+
+
  const dispatch = useDispatch()
   useEffect (()=>{
     const unsubscribe =  onAuthStateChanged(auth, (user) => {
@@ -41,12 +46,25 @@ signOut(auth).then(() => {
   dispatch(toggleGptSearch())
  }
 
+ const handleLang = (e) =>{
+  dispatch(changeLanguage(e.target.value))
+ }
 
   return (
     <div className='flex justify-between absolute top-[-100px] left-[-29px] z-10 w-screen bg-gradient-to-b from-black
 '>
-
+ 
       <img className='h-[260px]' src='images/logo.png' alt='logo'/>
+     
+      <select className='text-green-700 
+      bg-transparent flex
+      font-extrabold
+      mb-[20px]
+      '
+      onChange={handleLang}
+      >
+     {Supported_Lang.map(lang=> <option key={lang.indentifier} value={lang.indentifier}>{lang.name}</option>)}
+      </select>
      {/* <button className='text-red-700 font-bold hover:underline'><Link to={'/browse'}>Home</Link></button> */}
 
       <button onClick={handleGptSearchClick} className='text-white ml-42'>GPT SEARCH 🔍</button>

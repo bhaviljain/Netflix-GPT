@@ -2,6 +2,7 @@ import React from 'react'
 import MovieCard from './MovieCard'
 
 export const Movielist = ({title , movies}) => {
+  
   return (
     <div className=''>
 
