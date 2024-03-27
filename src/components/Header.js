@@ -12,6 +12,8 @@ import { changeLanguage } from '../utils/ConfigSlice';
 const Header = () => {
 
 
+const showgptSearch = useSelector(state=>state.gpt.showgptSearch)
+
  const dispatch = useDispatch()
   useEffect (()=>{
     const unsubscribe =  onAuthStateChanged(auth, (user) => {
@@ -67,7 +69,7 @@ signOut(auth).then(() => {
       </select>
      {/* <button className='text-red-700 font-bold hover:underline'><Link to={'/browse'}>Home</Link></button> */}
 
-      <button onClick={handleGptSearchClick} className='text-white ml-42'>GPT SEARCH 🔍</button>
+      <button onClick={handleGptSearchClick} className='text-white ml-42'>{showgptSearch?"HomePage":"Gpt Seach 🔍"}</button>
 
      { user && <div className='flex'>
       <img className='h-[36px] mt-[120px]' src={user?.photoURL} alt='usericon'/>
